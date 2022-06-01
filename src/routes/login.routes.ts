@@ -18,7 +18,7 @@ routes.post('/login',(req,res)=> {
     userService.register(login.email)
         .then(user => {
             if (user && user.password === login.password) {
-                res.redirect('/room')
+                return res.redirect('/room')
             }
         })
 
