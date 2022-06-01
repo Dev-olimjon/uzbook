@@ -10,6 +10,6 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use('/',loginRoutes)
-app.listen(9090,()=>{
+app.listen(process.env.PORT || 9090,  ()=>{
     console.log('server has been started on port 9090')
 })
