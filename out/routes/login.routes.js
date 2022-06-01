@@ -32,9 +32,12 @@ routes.post('/login', (req, res) => {
             return res.redirect('/room');
         }
         else {
+            res.sendStatus(401);
         }
     })
-        .catch();
+        .catch(err => {
+        res.sendStatus(404);
+    });
 });
 routes.get('/register', (req, res) => {
     res.render('register');
