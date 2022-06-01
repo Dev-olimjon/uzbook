@@ -29,7 +29,7 @@ routes.post('/login', (req, res) => {
     user_service_1.default.register(login.email)
         .then(user => {
         if (user && user.password === login.password) {
-            return res.redirect('/room');
+            res.redirect('/room');
         }
     });
 });
