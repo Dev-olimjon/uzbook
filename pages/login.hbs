@@ -1,0 +1,68 @@
+<script>
+   
+</script>
+<style>
+ body{
+     background-color: #093545;
+     height: 100vh;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+ .login_div{
+     background-color: #041d262b;
+     width: 347px;
+     height: 476px;
+     display: flex;
+     flex-direction: column;
+     gap: 30px;
+     padding: 30px;
+     border-radius: 30px;
+     animation: identifier 1.1s ease-in-out;
+ }
+ @keyframes identifier {
+     0%{
+         transform: translateY(-900px);
+     }
+     100%{
+         transform: translateY(0px);
+     }
+ }
+ .input{
+     background-color: #093545;
+     width: 300px;
+     height: 45px;
+     color: white;
+ }
+ .input:active{
+     background-color: #093545;
+ }
+ .login{
+     color: white;
+     text-align: center;
+     font-size: 45pt;
+     font-family: 'Inconsolata', monospace;
+     margin-bottom: 20px;
+ }
+ .btn{
+     margin-top: 20px;
+ }
+ .link{
+     text-align: center;
+     color: white;
+     text-decoration: solid; 
+ }
+ .link img{
+     display: inline;
+     margin: 0;
+ }
+</style>
+<body>
+    <form class="login_div" action="http://localhost:9090/login" method="post">
+    <h1 class="login">Login</h1>
+     <input name="email" type="email" placeholder="Email..." class="input input-bordered input-info w-full max-w-xss" />
+     <input name="password" type="password" placeholder="Password..." class="input input-bordered input-info w-full max-w-xs" />
+     <button type="submit" class="btn btn-outline btn-success">Sign in</button>
+     <a class="link" href="/register">Sign up <img src="https://cdn-icons-png.flaticon.com/128/854/854184.png" width="30px" alt=""></a>
+    </form>
+</body>

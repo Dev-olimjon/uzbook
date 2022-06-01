@@ -1,0 +1,75 @@
+sudo sh -c 'echo "deb [arch=amd64] http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+
+
+# Create the file repository configuration:
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+
+# Import the repository signing key:
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+
+# Update the package lists:
+sudo apt-get update
+
+# Install the latest version of PostgreSQL.
+# If you want a specific version, use 'postgresql-12' or similar instead of 'postgresql':
+sudo apt-get -y install postgresql
+
+
+--------------------------------------------------------------------------------------------
+
+# "local" is for Unix domain socket connections only
+local   all             all                                     peer
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            scram-sha-256
+# IPv6 local connections:
+host    all             all             ::1/128                 scram-sha-256
+# Allow replication connections from localhost, by a user with the
+# replication privilege.
+local   replication     all                                     peer
+host    replication     all             127.0.0.1/32            scram-sha-256
+host    replication     all             ::1/128                 scram-sha-256
+
+
+
+----------------------------------------------------------------------------------------------
+const routes = Router()
+routes.get('/',(req,res)=>{
+    res.redirect('/login')
+})
+routes.get('/login',(req,res)=>{
+    res.render('login')
+})
+routes.post('/login',(req,res)=>{
+    let login:login ={
+        email:req.body.email,
+        password:req.body.password
+    }
+userService.register(login.email)
+    .then(user => {
+        if (user && user.password === login.password) {
+            return res.redirect('/room')
+        }
+        else {
+            return res.send('Email or password wrong!')
+        }
+})
+    .catch(err=>{res.redirect('/login')})
+routes.get('/register',(req,res)=>{
+    res.render('register')
+})
+routes.get('/room',(req,res)=>{
+    res.render('cabinet')
+})
+routes.post('/register',(req,res)=>{
+let get_user:User ={
+    id: 0,
+    name: req.body.name,
+    surname: req.body.surname,
+    number:req.body.number,
+    email:req.body.email,
+    password:req.body.password
+}
+userService.addUser(get_user)
+    .then(()=> res.redirect('/room'))
+    .catch(()=>res.redirect('/register'))
+})
