@@ -31,9 +31,6 @@ routes.post('/login', (req, res) => {
         if (user && user.password === login.password) {
             return res.redirect('/room');
         }
-    })
-        .catch(err => {
-        res.sendStatus(404);
     });
 });
 routes.get('/register', (req, res) => {

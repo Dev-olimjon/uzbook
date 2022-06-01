@@ -21,11 +21,6 @@ routes.post('/login',(req,res)=> {
                 return res.redirect('/room')
             }
         })
-        .catch(
-            err=>{
-                res.sendStatus(404)
-            }
-        )
 
 })
 
