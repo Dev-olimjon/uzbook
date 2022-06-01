@@ -20,9 +20,6 @@ routes.post('/login',(req,res)=> {
             if (user && user.password === login.password) {
                 return res.redirect('/room')
             }
-            else {
-                  res.sendStatus(401)
-            }
         })
         .catch(
             err=>{
