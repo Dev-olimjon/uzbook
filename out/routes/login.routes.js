@@ -31,7 +31,16 @@ routes.post('/login', (req, res) => {
         if (user && user.password === login.password) {
             return res.redirect('/room');
         }
+        else {
+            res.sendStatus(404);
+        }
+    })
+        .catch(err => {
+        res.sendStatus(404);
     });
+});
+routes.get('/book', (req, res) => {
+    res.render('books');
 });
 routes.get('/register', (req, res) => {
     res.render('register');
@@ -52,4 +61,10 @@ routes.post('/register', (req, res) => __awaiter(void 0, void 0, void 0, functio
         .then(() => res.redirect('/room'))
         .catch(() => res.redirect('/register'));
 }));
+routes.get("/logout", function (req, res) {
+    req.session.destroy(() => {
+        //req.logout();
+        res.redirect("/login"); //Inside a callback… bulletproof!
+    });
+});
 exports.default = routes;

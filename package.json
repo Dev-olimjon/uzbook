@@ -21,6 +21,7 @@
     "express": "^4.18.1",
     "express-handlebars": "^6.0.6",
     "express-session": "^1.17.3",
+    "logout": "^1.0.2",
     "nodemon": "^2.0.16",
     "pg": "^8.7.3"
   }
