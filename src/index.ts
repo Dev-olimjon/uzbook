@@ -2,7 +2,21 @@ import  express  from "express";
 import cors from "cors"
 import { engine } from "express-handlebars";
 import loginRoutes from "./routes/login.routes"
+import session from "express-session";
+import cookieParser from "cookie-parser";
 const app = express()
+declare module "express-session" {
+    interface SessionData {
+        email: string
+    }
+}
+// sessions
+app.use(session({
+    secret: 'secret-code',
+    proxy: true,
+    saveUninitialized: true
+}))
+app.use(cookieParser())
 app.engine('.hbs', engine({ extname: '.hbs' }))
 app.set('view engine', '.hbs')
 app.set('views', './pages');

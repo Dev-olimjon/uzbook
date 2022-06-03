@@ -30,6 +30,7 @@ routes.post('/login', (req, res) => {
         .then(user => {
         if (user && user.password === login.password) {
             return res.redirect('/room');
+            return req.session.email = req.body.email;
         }
         else {
             res.sendStatus(404);
@@ -46,11 +47,14 @@ routes.get('/register', (req, res) => {
     res.render('register');
 });
 routes.get('/room', (req, res) => {
-    // if (isLoggedIn) {
-    res.render('cabinet');
-    // } else {
-    //     res.redirect('/')
-    // }
+    let username = req.session.email;
+    if (!username) {
+        res.redirect('/login');
+    }
+    else {
+        let cart = user_service_1.default.findUser(username);
+        res.render('cabinet');
+    }
 });
 routes.post('/register', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let get_user = {

@@ -19,6 +19,7 @@ routes.post('/login',(req,res)=> {
         .then(user => {
             if (user && user.password === login.password) {
                 return res.redirect('/room')
+                return req.session.email = req.body.email
             }
             else {
                 res.sendStatus(404)
@@ -37,11 +38,14 @@ routes.get('/register',(req,res)=>{
     res.render('register')
 })
 routes.get('/room',(req,res)=>{
-    // if (isLoggedIn) {
+    let username = req.session.email
+    if(!username){
+        res.redirect('/login')
+    }
+    else{
+        let cart = userService.findUser(username)
         res.render('cabinet')
-    // } else {
-    //     res.redirect('/')
-    // }
+    }
 })
 routes.post('/register',async(req,res)=>{
 let get_user:User ={

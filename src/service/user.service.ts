@@ -16,7 +16,34 @@ async function register(email: string): Promise<User|null> {
    return res.rows[0] as User
 }
 
+export type Item = {
+   id: string,
+   name: string,
+   cost: number
+}
+
+export type Cart = {
+   total: number,
+   items: Item[]
+}
+let carts = new Map<string, Cart>()
+
+export function findUser(username: string) : Cart {
+   if (carts.has(username)) {
+      return carts.get(username)!
+   }
+   else {
+      let cart: Cart = {
+         total: 0,
+         items: []
+      }
+      carts.set(username, cart)
+      return cart
+   }
+}
+
 export default {
    addUser,
-   register
+   register,
+   findUser
 }
