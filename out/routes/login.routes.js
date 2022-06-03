@@ -53,7 +53,7 @@ routes.get('/room', (req, res) => {
     }
     else {
         let cart = user_service_1.default.findUser(username);
-        res.render('cabinet');
+        res.redirect('cabinet');
     }
 });
 routes.post('/register', (req, res) => __awaiter(void 0, void 0, void 0, function* () {

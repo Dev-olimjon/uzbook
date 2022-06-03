@@ -5,6 +5,7 @@ import loginRoutes from "./routes/login.routes"
 import session from "express-session";
 import cookieParser from "cookie-parser";
 const app = express()
+import * as path from "path";
 declare module "express-session" {
     interface SessionData {
         email: string
@@ -24,6 +25,7 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use('/',loginRoutes)
-app.listen(process.env.PORT || 9090,  ()=>{
+app.use(express.static(path.join(__dirname, "../public")))
+app.listen(9090,  ()=>{
     console.log('server has been started on port 9090')
 })

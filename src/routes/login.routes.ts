@@ -44,7 +44,7 @@ routes.get('/room',(req,res)=>{
     }
     else{
         let cart = userService.findUser(username)
-        res.render('cabinet')
+        res.redirect('cabinet')
     }
 })
 routes.post('/register',async(req,res)=>{
