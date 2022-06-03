@@ -46,7 +46,11 @@ routes.get('/register', (req, res) => {
     res.render('register');
 });
 routes.get('/room', (req, res) => {
+    // if (isLoggedIn) {
     res.render('cabinet');
+    // } else {
+    //     res.redirect('/')
+    // }
 });
 routes.post('/register', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let get_user = {

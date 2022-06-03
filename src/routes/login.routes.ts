@@ -37,7 +37,11 @@ routes.get('/register',(req,res)=>{
     res.render('register')
 })
 routes.get('/room',(req,res)=>{
-    res.render('cabinet')
+    // if (isLoggedIn) {
+        res.render('cabinet')
+    // } else {
+    //     res.redirect('/')
+    // }
 })
 routes.post('/register',async(req,res)=>{
 let get_user:User ={
