@@ -66,13 +66,7 @@ routes.post('/register', (req, res) => __awaiter(void 0, void 0, void 0, functio
         password: req.body.password
     };
     user_service_1.default.addUser(get_user)
-        .then(() => res.redirect('/room'))
+        .then(() => res.redirect('/login'))
         .catch(() => res.redirect('/register'));
 }));
-routes.get("/logout", function (req, res) {
-    req.session.destroy(() => {
-        //req.logout();
-        res.redirect("/login"); //Inside a callback… bulletproof!
-    });
-});
 exports.default = routes;

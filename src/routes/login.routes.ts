@@ -57,14 +57,8 @@ let get_user:User ={
     password:req.body.password
 }
 userService.addUser(get_user)
-    .then(()=> res.redirect('/room'))
+    .then(()=> res.redirect('/login'))
     .catch(()=>res.redirect('/register'))
 })
-routes.get("/logout", function(req, res) {
-    req.session.destroy(() => {
-        //req.logout();
-        res.redirect("/login"); //Inside a callback… bulletproof!
-    });
-});
 
 export default routes;

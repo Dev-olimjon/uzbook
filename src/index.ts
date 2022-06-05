@@ -4,6 +4,7 @@ import { engine } from "express-handlebars";
 import loginRoutes from "./routes/login.routes"
 import session from "express-session";
 import cookieParser from "cookie-parser";
+import bodyParser from "body-parser";
 const app = express()
 import * as path from "path";
 declare module "express-session" {
@@ -11,13 +12,13 @@ declare module "express-session" {
         email: string
     }
 }
-// sessions
+app.use(bodyParser())
+app.use(cookieParser())
 app.use(session({
     secret: 'secret-code',
     proxy: true,
     saveUninitialized: true
 }))
-app.use(cookieParser())
 app.engine('.hbs', engine({ extname: '.hbs' }))
 app.set('view engine', '.hbs')
 app.set('views', './pages');
@@ -26,6 +27,6 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use('/',loginRoutes)
 app.use(express.static(path.join(__dirname, "../public")))
-app.listen(9090,  ()=>{
+app.listen(process.env.PORT||9090,  ()=>{
     console.log('server has been started on port 9090')
 })
