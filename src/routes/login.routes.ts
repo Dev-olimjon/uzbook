@@ -4,13 +4,11 @@ import userService from "../service/user.service";
 import login from "../model/login.model";
 import client from "../db/client";
 const routes = Router()
-routes.get('/',(req,res)=>{
-    res.redirect('/login')
-})
+
 routes.get('/login',(req,res)=>{
     res.render('login')
 })
-routes.post('/login',(req,res)=> {
+routes.post('/login',(req,res,next)=> {
     let login: login = {
         email: req.body.email,
         password: req.body.password
@@ -18,8 +16,9 @@ routes.post('/login',(req,res)=> {
     userService.register(login.email)
         .then(user => {
             if (user && user.password === login.password) {
-                return res.redirect('/room')
-                return req.session.email = req.body.email
+                req.session.email = req.body.email
+                res.redirect('/room')
+                res.render('cabinet')
             }
             else {
                 res.sendStatus(404)
@@ -37,14 +36,14 @@ routes.get('/book',(req,res)=>{
 routes.get('/register',(req,res)=>{
     res.render('register')
 })
-routes.get('/room',(req,res)=>{
-    let username = req.session.email
-    if(!username){
+
+routes.get('/room',(req,res,next)=>{
+    if(!req.session.email){
         res.redirect('/login')
     }
-    else{
-        let cart = userService.findUser(username)
-        res.redirect('cabinet')
+    else {
+        res.redirect('/room')
+        res.render('cabinet')
     }
 })
 routes.post('/register',async(req,res)=>{
@@ -59,6 +58,15 @@ let get_user:User ={
 userService.addUser(get_user)
     .then(()=> res.redirect('/login'))
     .catch(()=>res.redirect('/register'))
+})
+routes.get('/',(req,res)=>{
+    if(!req.session.email){
+        res.redirect('/login')
+    }
+    else {
+        res.redirect('/room')
+    }
+    // res.redirect('/login')
 })
 
 export default routes;

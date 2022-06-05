@@ -26,24 +26,7 @@ export type Cart = {
    total: number,
    items: Item[]
 }
-let carts = new Map<string, Cart>()
-
-export function findUser(username: string) : Cart {
-   if (carts.has(username)) {
-      return carts.get(username)!
-   }
-   else {
-      let cart: Cart = {
-         total: 0,
-         items: []
-      }
-      carts.set(username, cart)
-      return cart
-   }
-}
-
 export default {
    addUser,
    register,
-   findUser
 }

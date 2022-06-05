@@ -12,7 +12,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findUser = void 0;
 const client_1 = __importDefault(require("../db/client"));
 function addUser(user) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -30,23 +29,7 @@ function register(email) {
         return res.rows[0];
     });
 }
-let carts = new Map();
-function findUser(username) {
-    if (carts.has(username)) {
-        return carts.get(username);
-    }
-    else {
-        let cart = {
-            total: 0,
-            items: []
-        };
-        carts.set(username, cart);
-        return cart;
-    }
-}
-exports.findUser = findUser;
 exports.default = {
     addUser,
     register,
-    findUser
 };
