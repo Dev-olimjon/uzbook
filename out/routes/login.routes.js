@@ -15,6 +15,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const user_service_1 = __importDefault(require("../service/user.service"));
 const routes = (0, express_1.Router)();
+routes.get('/', (req, res) => {
+    if (!req.session.email) {
+        res.redirect('/login');
+    }
+    else {
+        res.redirect('/');
+        res.render('cabinet');
+    }
+});
 routes.get('/login', (req, res) => {
     res.render('login');
 });
@@ -27,7 +36,7 @@ routes.post('/login', (req, res, next) => {
         .then(user => {
         if (user && user.password === login.password) {
             req.session.email = req.body.email;
-            res.redirect('/room');
+            res.redirect('/');
             res.render('cabinet');
         }
         else {
@@ -44,15 +53,6 @@ routes.get('/book', (req, res) => {
 routes.get('/register', (req, res) => {
     res.render('register');
 });
-routes.get('/room', (req, res, next) => {
-    if (!req.session.email) {
-        res.redirect('/login');
-    }
-    else {
-        res.redirect('/room');
-        res.render('cabinet');
-    }
-});
 routes.post('/register', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let get_user = {
         id: 0,
@@ -66,13 +66,4 @@ routes.post('/register', (req, res) => __awaiter(void 0, void 0, void 0, functio
         .then(() => res.redirect('/login'))
         .catch(() => res.redirect('/register'));
 }));
-routes.get('/', (req, res) => {
-    if (!req.session.email) {
-        res.redirect('/login');
-    }
-    else {
-        res.redirect('/room');
-    }
-    // res.redirect('/login')
-});
 exports.default = routes;

@@ -4,7 +4,15 @@ import userService from "../service/user.service";
 import login from "../model/login.model";
 import client from "../db/client";
 const routes = Router()
-
+routes.get('/',(req,res)=>{
+    if(!req.session.email){
+        res.redirect('/login')
+    }
+    else {
+        res.redirect('/')
+        res.render('cabinet')
+    }
+})
 routes.get('/login',(req,res)=>{
     res.render('login')
 })
@@ -17,7 +25,7 @@ routes.post('/login',(req,res,next)=> {
         .then(user => {
             if (user && user.password === login.password) {
                 req.session.email = req.body.email
-                res.redirect('/room')
+                res.redirect('/')
                 res.render('cabinet')
             }
             else {
@@ -37,15 +45,8 @@ routes.get('/register',(req,res)=>{
     res.render('register')
 })
 
-routes.get('/room',(req,res,next)=>{
-    if(!req.session.email){
-        res.redirect('/login')
-    }
-    else {
-        res.redirect('/room')
-        res.render('cabinet')
-    }
-})
+
+
 routes.post('/register',async(req,res)=>{
 let get_user:User ={
     id: 0,
@@ -59,14 +60,6 @@ userService.addUser(get_user)
     .then(()=> res.redirect('/login'))
     .catch(()=>res.redirect('/register'))
 })
-routes.get('/',(req,res)=>{
-    if(!req.session.email){
-        res.redirect('/login')
-    }
-    else {
-        res.redirect('/room')
-    }
-    // res.redirect('/login')
-})
+
 
 export default routes;
