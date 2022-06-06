@@ -9,7 +9,6 @@ routes.get('/',(req,res)=>{
         res.redirect('/login')
     }
     else {
-        res.redirect('/')
         res.render('cabinet')
     }
 })
@@ -25,8 +24,8 @@ routes.post('/login',(req,res,next)=> {
         .then(user => {
             if (user && user.password === login.password) {
                 req.session.email = req.body.email
-                res.redirect('/')
                 res.render('cabinet')
+                res.redirect('/')
             }
             else {
                 res.sendStatus(404)
@@ -38,8 +37,23 @@ routes.post('/login',(req,res,next)=> {
             }
         )
 })
+routes.get('/about',(req,res)=>{
+    res.render('about')
+    if(!req.session.email){
+        res.redirect('/login')
+    }
+    else {
+        res.render('about')
+    }
+})
 routes.get('/book',(req,res)=>{
     res.render('books')
+    if(!req.session.email){
+        res.redirect('/login')
+    }
+    else {
+        res.render('books')
+    }
 })
 routes.get('/register',(req,res)=>{
     res.render('register')
@@ -61,5 +75,9 @@ userService.addUser(get_user)
     .catch(()=>res.redirect('/register'))
 })
 
+routes.get('/logout',(req,res)=>{
+    req.session.email = ''
+    res.redirect('/')
+})
 
 export default routes;
