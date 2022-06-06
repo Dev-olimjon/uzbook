@@ -84,4 +84,11 @@ routes.get('/logout', (req, res) => {
     req.session.email = '';
     res.redirect('/');
 });
+let dislike = 0;
+routes.get('/like', (req, res) => {
+    res.redirect('/');
+});
+routes.get('/dislike', (req, res) => {
+    res.redirect('/');
+});
 exports.default = routes;

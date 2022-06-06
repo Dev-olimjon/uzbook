@@ -80,4 +80,13 @@ routes.get('/logout',(req,res)=>{
     res.redirect('/')
 })
 
+let dislike:number = 0;
+
+routes.get('/like',(req,res)=>{
+   res.redirect('/')
+})
+routes.get('/dislike',(req,res)=>{
+    res.redirect('/')
+})
+
 export default routes;

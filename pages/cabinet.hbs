@@ -26,6 +26,19 @@
         display: flex;
         flex: 3;
         background-color: #0c4458;
+        flex-direction: column;
+        gap: 70px;
+        align-items: center;
+        text-align: center;
+    }
+    header{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        -webkit-box-shadow: 15px 30px 8px 0px rgba(34, 60, 80, 0.2);
+        -moz-box-shadow: 15px 30px 8px 0px rgba(34, 60, 80, 0.2);
+        box-shadow: 15px 30px 8px 0px rgba(34, 60, 80, 0.2);
+        padding: 10px;
     }
     .link{
         font-size: 30pt;
@@ -43,6 +56,18 @@
         border-right: none;
         border-top: none;
     }
+    .logo{
+        font-size: 35pt;
+        color: white;
+        text-align: center;
+    }
+    /*.log{*/
+    /*    font-size: 50pt;*/
+    /*}*/
+    footer img{
+     display: inline;
+        margin-left: 50px;
+    }
 </style>
 <body>
    <div class="menu">
@@ -50,10 +75,20 @@
        <a class="link border" href="/"> <img class="img" width="70px" src="https://cdn-icons.flaticon.com/png/128/2549/premium/2549900.png?token=exp=1654171140~hmac=dbd0a3b2534e0ee3a457b6507f6ce423" alt=""> HOME</a>
        <a class="link" href="/book"> <img class="img" width="70px" src="https://cdn-icons.flaticon.com/png/128/3330/premium/3330300.png?token=exp=1654171189~hmac=9febc9e8690f11d564243aa4d6827e35" alt=""> BOOKS</a>
        <a class="link" href="/about"> <img class="img" width="70px" src="https://cdn-icons.flaticon.com/png/128/3356/premium/3356068.png?token=exp=1654171223~hmac=5ee1d5ca1f6c0e4a2a560fd3edb238f4" alt=""> ABOUT</a>
-       <a class="link" href="/profile"> <img width="70px" class="img" src="https://cdn-icons.flaticon.com/png/128/1144/premium/1144760.png?token=exp=1654442718~hmac=7465a53c8a976b71368f520a02d18b33" alt=""> ABOUT ME</a>
+       <a class="link" href="/profile"> <img width="70px" class="img" src="https://cdn-icons.flaticon.com/png/128/1144/premium/1144760.png?token=exp=1654442718~hmac=7465a53c8a976b71368f520a02d18b33" alt=""> PROFILE</a>
        <a class="link" href="/logout"> <img class="img" width="70px" src="https://cdn-icons-png.flaticon.com/128/1286/1286853.png" alt=""> LOG OUT</a>
    </div>
    <div class="body">
-
+        <header>
+            <h1 class="logo">UZ-BOOK</h1>
+        </header>
+       <section>
+           <img width="500px" src="https://cdn-icons-png.flaticon.com/128/2232/2232688.png" alt="">
+           <h1 class="logo log"> Welcome to <br> Uz-book</h1>
+           <footer>
+               <a href="/like"> <img width="30px" src="https://cdn-icons-png.flaticon.com/128/633/633991.png" alt=""> </a>
+               <a href="/dislike"> <img width="30px" src="https://cdn-icons-png.flaticon.com/128/633/633990.png" alt=""> </a>
+           </footer>
+       </section>
    </div>
 </body>
