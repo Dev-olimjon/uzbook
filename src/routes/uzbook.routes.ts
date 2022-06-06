@@ -20,7 +20,7 @@ routes.post('/login',(req,res,next)=> {
         email: req.body.email,
         password: req.body.password
     }
-    userService.register(login.email)
+    userService.register(login.email,)
         .then(user => {
             if (user && user.password === login.password) {
                 req.session.email = req.body.email
@@ -80,7 +80,16 @@ routes.get('/logout',(req,res)=>{
     res.redirect('/')
 })
 
-let dislike:number = 0;
+routes.get('/profile',(req,res)=>{
+    res.render('profile')
+    if(!req.session.email){
+        res.redirect('/login')
+    }
+    else {
+        res.render('profile')
+    }
+})
+
 
 routes.get('/like',(req,res)=>{
    res.redirect('/')
@@ -88,5 +97,9 @@ routes.get('/like',(req,res)=>{
 routes.get('/dislike',(req,res)=>{
     res.redirect('/')
 })
+
+//----------------------------------------------------------------------------------------------------------
+// books settings
+
 
 export default routes;

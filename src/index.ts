@@ -1,12 +1,13 @@
 import  express  from "express";
 import cors from "cors"
 import { engine } from "express-handlebars";
-import loginRoutes from "./routes/login.routes"
+import loginRoutes from "./routes/uzbook.routes"
 import session from "express-session";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 const app = express()
 import * as path from "path";
+import uzbookRoutes from "./routes/uzbook.routes";
 declare module "express-session" {
     interface SessionData {
         email: string
@@ -25,7 +26,7 @@ app.set('views', './pages');
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-app.use('/',loginRoutes)
+app.use('/',uzbookRoutes)
 app.use(express.static(path.join(__dirname, "../public")))
 app.listen(process.env.PORT||9090,  ()=>{
     console.log('server has been started on port 9090')
