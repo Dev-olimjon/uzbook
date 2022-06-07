@@ -26,6 +26,8 @@
         display: flex;
         flex: 3;
         background-color: #0c4458;
+        justify-content: center;
+        align-items: center;
     }
     .link{
         font-size: 30pt;
@@ -43,6 +45,22 @@
         border-right: none;
         border-top: none;
     }
+    .userdate{
+        width: 324px;
+        height: 483px;
+        background-color: #093545;
+        border-radius: 30px;
+        -webkit-box-shadow: 26px 31px 8px 0px rgba(6, 25, 39, 0.2);
+        -moz-box-shadow: 26px 31px 8px 0px rgba(6, 25, 39, 0.2);
+        box-shadow: 26px 31px 8px 0px rgba(6, 25, 39, 0.2);
+        border: #1a363f 3px solid;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .userdate img{
+      margin-top: 20px;
+    }
 </style>
 <body>
 <div class="menu">
@@ -54,6 +72,9 @@
     <a class="link" href="/logout"> <img class="img" width="70px" src="https://cdn-icons-png.flaticon.com/128/1286/1286853.png" alt=""> LOG OUT</a>
 </div>
 <div class="body">
-
+    <div class="userdate">
+        <img src="https://cdn-icons-png.flaticon.com/128/3135/3135715.png" alt="">
+        <h1></h1>
+    </div>
 </div>
 </body>

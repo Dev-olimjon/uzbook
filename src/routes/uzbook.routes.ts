@@ -28,12 +28,12 @@ routes.post('/login',(req,res,next)=> {
                 res.redirect('/')
             }
             else {
-                res.sendStatus(404)
+                res.redirect('/err')
             }
         })
         .catch(
             err=>{
-                res.sendStatus(404)
+                res.redirect('/err')
             }
         )
 })
@@ -96,6 +96,10 @@ routes.get('/like',(req,res)=>{
 })
 routes.get('/dislike',(req,res)=>{
     res.redirect('/')
+})
+
+routes.get('/err',(req,res)=>{
+    res.render('error')
 })
 
 //----------------------------------------------------------------------------------------------------------

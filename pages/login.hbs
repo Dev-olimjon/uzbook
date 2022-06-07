@@ -56,6 +56,33 @@
      display: inline;
      margin: 0;
  }
+    
+    
+    @media screen and (max-width: 281px){
+        .login_div{
+            background-color: #041d262b;
+            width: 247px;
+            height: 376px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 30px;
+            border-radius: 30px;
+            animation: identifier 1.1s ease-in-out;
+        }
+        .login{
+            color: white;
+            text-align: center;
+            font-size: 25pt;
+            font-family: 'Inconsolata', monospace;
+            margin-bottom: 0px;
+        }
+        .input{
+            width: 200px;
+            height: 50px;
+        }
+    }
+    
 </style>
 <body>
     <form class="login_div" action="/login" method="post">
