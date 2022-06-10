@@ -16,7 +16,7 @@ const express_1 = require("express");
 const user_service_1 = __importDefault(require("../service/user.service"));
 const routes = (0, express_1.Router)();
 routes.get('/', (req, res) => {
-    if (!req.session.email) {
+    if (!req.session.user) {
         res.redirect('/login');
     }
     else {
@@ -33,10 +33,16 @@ routes.post('/login', (req, res, next) => {
     };
     user_service_1.default.register(login.email)
         .then(user => {
-        if (user && user.password === login.password) {
-            req.session.email = req.body.email;
-            res.render('cabinet');
-            res.redirect('/');
+        if (user) {
+            if (user.password === login.password) {
+                req.session.user = user;
+                //req.session.email = req.body.email
+                res.render('cabinet');
+                res.redirect('/');
+            }
+            else {
+                res.redirect('/err');
+            }
         }
         else {
             res.redirect('/err');
@@ -48,7 +54,7 @@ routes.post('/login', (req, res, next) => {
 });
 routes.get('/about', (req, res) => {
     res.render('about');
-    if (!req.session.email) {
+    if (!req.session.user) {
         res.redirect('/login');
     }
     else {
@@ -57,7 +63,7 @@ routes.get('/about', (req, res) => {
 });
 routes.get('/book', (req, res) => {
     res.render('books');
-    if (!req.session.email) {
+    if (!req.session.user) {
         res.redirect('/login');
     }
     else {
@@ -81,17 +87,18 @@ routes.post('/register', (req, res) => __awaiter(void 0, void 0, void 0, functio
         .catch(() => res.redirect('/register'));
 }));
 routes.get('/logout', (req, res) => {
-    req.session.email = '';
+    req.session.user = '';
     res.redirect('/');
 });
 routes.get('/profile', (req, res) => {
     res.render('profile');
-    if (!req.session.email) {
+    if (!req.session.user) {
         res.redirect('/login');
     }
     else {
-        res.render('profile');
+        res.render('profile', { user: req.session.user });
     }
+    //userService.userdate(req.body.email)
 });
 routes.get('/like', (req, res) => {
     res.redirect('/');

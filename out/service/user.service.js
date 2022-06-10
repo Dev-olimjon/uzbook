@@ -26,10 +26,24 @@ function register(email) {
         if (res.rows.length === 0) {
             return null;
         }
+        return mapUser(res.rows[0]);
+    });
+}
+function mapUser(row) {
+    return row;
+}
+function userdate(email) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let sql = 'SELECT * from users WHERE email = $1';
+        let res = yield client_1.default.query(sql, [email]);
+        if (res.rows.length === 0) {
+            return null;
+        }
         return res.rows[0];
     });
 }
 exports.default = {
     addUser,
     register,
+    userdate
 };

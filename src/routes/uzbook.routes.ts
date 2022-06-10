@@ -3,9 +3,11 @@ import User from "../model/user.model";
 import userService from "../service/user.service";
 import login from "../model/login.model";
 import client from "../db/client";
+import Userdate from "../model/userdate.model";
+import userdateModel from "../model/userdate.model";
 const routes = Router()
 routes.get('/',(req,res)=>{
-    if(!req.session.email){
+    if(!req.session.user){
         res.redirect('/login')
     }
     else {
@@ -22,12 +24,16 @@ routes.post('/login',(req,res,next)=> {
     }
     userService.register(login.email,)
         .then(user => {
-            if (user && user.password === login.password) {
-                req.session.email = req.body.email
-                res.render('cabinet')
-                res.redirect('/')
-            }
-            else {
+            if (user) {
+                if (user.password === login.password) {
+                    req.session.user = user
+                    //req.session.email = req.body.email
+                    res.render('cabinet')
+                    res.redirect('/')
+                } else {
+                    res.redirect('/err')
+                }
+            } else {
                 res.redirect('/err')
             }
         })
@@ -39,7 +45,7 @@ routes.post('/login',(req,res,next)=> {
 })
 routes.get('/about',(req,res)=>{
     res.render('about')
-    if(!req.session.email){
+    if(!req.session.user){
         res.redirect('/login')
     }
     else {
@@ -48,7 +54,7 @@ routes.get('/about',(req,res)=>{
 })
 routes.get('/book',(req,res)=>{
     res.render('books')
-    if(!req.session.email){
+    if(!req.session.user){
         res.redirect('/login')
     }
     else {
@@ -76,20 +82,20 @@ userService.addUser(get_user)
 })
 
 routes.get('/logout',(req,res)=>{
-    req.session.email = ''
+    //req.session.user = ''
     res.redirect('/')
 })
 
 routes.get('/profile',(req,res)=>{
     res.render('profile')
-    if(!req.session.email){
+    if(!req.session.user){
         res.redirect('/login')
     }
     else {
-        res.render('profile')
+        res.render('profile',{user: req.session.user})
     }
+    //userService.userdate(req.body.email)
 })
-
 
 routes.get('/like',(req,res)=>{
    res.redirect('/')
@@ -104,6 +110,7 @@ routes.get('/err',(req,res)=>{
 
 //----------------------------------------------------------------------------------------------------------
 // books settings
+
 
 
 export default routes;

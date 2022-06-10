@@ -8,9 +8,11 @@ import bodyParser from "body-parser";
 const app = express()
 import * as path from "path";
 import uzbookRoutes from "./routes/uzbook.routes";
+import User from "./model/user.model";
 declare module "express-session" {
     interface SessionData {
-        email: string
+        email: string,
+        user:User
     }
 }
 app.use(bodyParser())
@@ -28,6 +30,6 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use('/',uzbookRoutes)
 app.use(express.static(path.join(__dirname, "../public")))
-app.listen(process.env.PORT||9090,  ()=>{
+app.listen(9090,  ()=>{
     console.log('server has been started on port 9090')
 })
