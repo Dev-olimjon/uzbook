@@ -82,7 +82,7 @@ userService.addUser(get_user)
 })
 
 routes.get('/logout',(req,res)=>{
-    //req.session.user = ''
+    req.session.user = undefined
     res.redirect('/')
 })
 
@@ -92,9 +92,8 @@ routes.get('/profile',(req,res)=>{
         res.redirect('/login')
     }
     else {
-        res.render('profile',{user: req.session.user})
+        res.render('profile',{user: req.session.user!,})
     }
-    //userService.userdate(req.body.email)
 })
 
 routes.get('/like',(req,res)=>{

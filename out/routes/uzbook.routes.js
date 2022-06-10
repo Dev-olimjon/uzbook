@@ -87,7 +87,7 @@ routes.post('/register', (req, res) => __awaiter(void 0, void 0, void 0, functio
         .catch(() => res.redirect('/register'));
 }));
 routes.get('/logout', (req, res) => {
-    req.session.user = '';
+    req.session.user = undefined;
     res.redirect('/');
 });
 routes.get('/profile', (req, res) => {
@@ -96,9 +96,8 @@ routes.get('/profile', (req, res) => {
         res.redirect('/login');
     }
     else {
-        res.render('profile', { user: req.session.user });
+        res.render('profile', { user: req.session.user, });
     }
-    //userService.userdate(req.body.email)
 });
 routes.get('/like', (req, res) => {
     res.redirect('/');
