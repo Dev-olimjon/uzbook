@@ -96,7 +96,7 @@ routes.get('/profile', (req, res) => {
         res.redirect('/login');
     }
     else {
-        res.render('profile', { user: req.session.user, });
+        res.render('profile', { user: req.session.user });
     }
 });
 routes.get('/like', (req, res) => {

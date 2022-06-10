@@ -9,6 +9,8 @@ const app = express()
 import * as path from "path";
 import uzbookRoutes from "./routes/uzbook.routes";
 import User from "./model/user.model";
+import Favicon from "serve-favicon";
+import Path from "path"
 declare module "express-session" {
     interface SessionData {
         email: string,
@@ -22,6 +24,7 @@ app.use(session({
     proxy: true,
     saveUninitialized: true
 }))
+app.use(Favicon('./public/favicon.png'));
 app.engine('.hbs', engine({ extname: '.hbs' }))
 app.set('view engine', '.hbs')
 app.set('views', './pages');

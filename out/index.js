@@ -35,6 +35,7 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const app = (0, express_1.default)();
 const path = __importStar(require("path"));
 const uzbook_routes_1 = __importDefault(require("./routes/uzbook.routes"));
+const serve_favicon_1 = __importDefault(require("serve-favicon"));
 app.use((0, body_parser_1.default)());
 app.use((0, cookie_parser_1.default)());
 app.use((0, express_session_1.default)({
@@ -42,6 +43,7 @@ app.use((0, express_session_1.default)({
     proxy: true,
     saveUninitialized: true
 }));
+app.use((0, serve_favicon_1.default)('./public/favicon.png'));
 app.engine('.hbs', (0, express_handlebars_1.engine)({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
 app.set('views', './pages');
