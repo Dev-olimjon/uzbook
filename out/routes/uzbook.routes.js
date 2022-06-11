@@ -99,15 +99,15 @@ routes.get('/profile', (req, res) => {
         res.render('profile', { user: req.session.user });
     }
 });
-routes.get('/like', (req, res) => {
-    res.redirect('/');
-});
-routes.get('/dislike', (req, res) => {
-    res.redirect('/');
-});
 routes.get('/err', (req, res) => {
     res.render('error');
 });
 //----------------------------------------------------------------------------------------------------------
 // books settings
+//---------------------------------------------------------------------------------------------------------------
+//admin
+routes.get('admin', (req, res) => {
+});
+routes.get('/root', (req, res) => {
+});
 exports.default = routes;

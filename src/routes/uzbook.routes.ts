@@ -96,13 +96,6 @@ routes.get('/profile',(req,res)=>{
     }
 })
 
-routes.get('/like',(req,res)=>{
-   res.redirect('/')
-})
-routes.get('/dislike',(req,res)=>{
-    res.redirect('/')
-})
-
 routes.get('/err',(req,res)=>{
     res.render('error')
 })
@@ -111,5 +104,15 @@ routes.get('/err',(req,res)=>{
 // books settings
 
 
+
+//---------------------------------------------------------------------------------------------------------------
+//admin
+routes.get('admin',(req,res)=>{
+
+})
+
+routes.get('/root',(req,res)=>{
+
+})
 
 export default routes;

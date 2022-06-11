@@ -13,7 +13,7 @@ import Favicon from "serve-favicon";
 import Path from "path"
 declare module "express-session" {
     interface SessionData {
-        email: string,
+        password: string,
         user:User
     }
 }
