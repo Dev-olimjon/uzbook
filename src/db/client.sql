@@ -20,3 +20,5 @@ CREATE TABLE books(
                       name                   VARCHAR(1000),
                       price                  VARCHAR(1000)
 );
+
+UPDATE TABLE brand SET name=$1 WHERE id=$2

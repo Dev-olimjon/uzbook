@@ -40,6 +40,14 @@ export type Cart = {
    total: number,
    items: Item[]
 }
+
+
+//----------------------------------------------------------------------
+
+function changeUser(id:number,user:User){
+let sql = 'UPDATE TABLE users SET name=$1, surname=$2, number=$3,email=$4,password=$5  WHERE id=$6'
+}
+
 export default {
    addUser,
    register,

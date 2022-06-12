@@ -42,6 +42,10 @@ function userdate(email) {
         return res.rows[0];
     });
 }
+//----------------------------------------------------------------------
+function changeUser(id, user) {
+    let sql = 'UPDATE TABLE u SET name=$1 WHERE id=$2';
+}
 exports.default = {
     addUser,
     register,
