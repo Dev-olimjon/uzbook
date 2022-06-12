@@ -94,6 +94,14 @@ routes.get('/profile',(req,res)=>{
     }
 })
 
+routes.get('/change',(req,res)=>{
+    if (req.session.user) {
+        res.render('changeuser', {user: req.session.user})
+    } else {
+        res.redirect('/login')
+    }
+})
+
 routes.get('/err',(req,res)=>{
     res.render('error')
 })

@@ -98,6 +98,14 @@ routes.get('/profile', (req, res) => {
         res.redirect('/login');
     }
 });
+routes.get('/change', (req, res) => {
+    if (req.session.user) {
+        res.render('changeuser', { user: req.session.user });
+    }
+    else {
+        res.redirect('/login');
+    }
+});
 routes.get('/err', (req, res) => {
     res.render('error');
 });
