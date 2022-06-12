@@ -92,7 +92,6 @@ routes.get('/profile',(req,res)=>{
     } else {
         res.redirect('/login')
     }
-    res.render('profile')
 })
 
 routes.get('/err',(req,res)=>{
