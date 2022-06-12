@@ -91,13 +91,13 @@ routes.get('/logout', (req, res) => {
     res.redirect('/');
 });
 routes.get('/profile', (req, res) => {
-    res.render('profile');
-    if (!req.session.user) {
-        res.redirect('/login');
-    }
-    else {
+    if (req.session.user) {
         res.render('profile', { user: req.session.user });
     }
+    else {
+        res.redirect('/login');
+    }
+    res.render('profile');
 });
 routes.get('/err', (req, res) => {
     res.render('error');

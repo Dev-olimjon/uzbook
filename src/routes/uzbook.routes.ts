@@ -87,13 +87,12 @@ routes.get('/logout',(req,res)=>{
 })
 
 routes.get('/profile',(req,res)=>{
-    res.render('profile')
-    if(!req.session.user){
+    if (req.session.user) {
+        res.render('profile', {user: req.session.user})
+    } else {
         res.redirect('/login')
     }
-    else {
-        res.render('profile',{user: req.session.user})
-    }
+    res.render('profile')
 })
 
 routes.get('/err',(req,res)=>{

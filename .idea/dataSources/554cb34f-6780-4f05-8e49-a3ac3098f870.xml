@@ -3,17 +3,9 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.39">
     <root id="1">
       <DateStyle>dmy</DateStyle>
-      <Grants>1||-9223372036854775808|c|G
-1||10|c|G
-1||10|C|G
-1||10|T|G
-13761||-9223372036854775808|c|G
-13761||10|c|G
-13761||10|C|G
-13761||10|T|G</Grants>
-      <IntrospectionStateNumber>779</IntrospectionStateNumber>
+      <IntrospectionStateNumber>787</IntrospectionStateNumber>
       <ServerVersion>14.3</ServerVersion>
-      <StartupTime>1654508745</StartupTime>
+      <StartupTime>1655023066</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -1431,21 +1423,26 @@ true posixrules
 13396||10|C|G
 13396||-9223372036854775808|U|G
 13396||10|U|G</Grants>
-      <IntrospectionStateNumber>779</IntrospectionStateNumber>
+      <IntrospectionStateNumber>787</IntrospectionStateNumber>
       <ObjectId>16387</ObjectId>
-      <Relations>sequence|table|16404|16405|1
-sequence|table|16413|16414|1
+      <Relations>sequence|table|16413|16414|1
+sequence|table|24605|24606|1
 </Relations>
       <OwnerName>olimjon</OwnerName>
     </database>
-    <role id="3" parent="1" name="pg_database_owner">
+    <role id="3" parent="1" name="olimjon">
+      <CanLogin>1</CanLogin>
+      <CreateDb>1</CreateDb>
+      <CreateRole>1</CreateRole>
+      <ObjectId>16386</ObjectId>
+      <Replication>1</Replication>
+      <SuperRole>1</SuperRole>
+    </role>
+    <role id="4" parent="1" name="pg_database_owner">
       <ObjectId>6171</ObjectId>
     </role>
-    <role id="4" parent="1" name="pg_read_all_data">
-      <ObjectId>6181</ObjectId>
-    </role>
-    <role id="5" parent="1" name="pg_write_all_data">
-      <ObjectId>6182</ObjectId>
+    <role id="5" parent="1" name="pg_execute_server_program">
+      <ObjectId>4571</ObjectId>
     </role>
     <role id="6" parent="1" name="pg_monitor">
       <ObjectId>3373</ObjectId>
@@ -1453,41 +1450,36 @@ sequence|table|16413|16414|1
 3375
 3377</RoleGrants>
     </role>
-    <role id="7" parent="1" name="pg_read_all_settings">
+    <role id="7" parent="1" name="pg_read_all_data">
+      <ObjectId>6181</ObjectId>
+    </role>
+    <role id="8" parent="1" name="pg_read_all_settings">
       <ObjectId>3374</ObjectId>
     </role>
-    <role id="8" parent="1" name="pg_read_all_stats">
+    <role id="9" parent="1" name="pg_read_all_stats">
       <ObjectId>3375</ObjectId>
-    </role>
-    <role id="9" parent="1" name="pg_stat_scan_tables">
-      <ObjectId>3377</ObjectId>
     </role>
     <role id="10" parent="1" name="pg_read_server_files">
       <ObjectId>4569</ObjectId>
     </role>
-    <role id="11" parent="1" name="pg_write_server_files">
-      <ObjectId>4570</ObjectId>
-    </role>
-    <role id="12" parent="1" name="pg_execute_server_program">
-      <ObjectId>4571</ObjectId>
-    </role>
-    <role id="13" parent="1" name="pg_signal_backend">
+    <role id="11" parent="1" name="pg_signal_backend">
       <ObjectId>4200</ObjectId>
     </role>
-    <role id="14" parent="1" name="postgres">
+    <role id="12" parent="1" name="pg_stat_scan_tables">
+      <ObjectId>3377</ObjectId>
+    </role>
+    <role id="13" parent="1" name="pg_write_all_data">
+      <ObjectId>6182</ObjectId>
+    </role>
+    <role id="14" parent="1" name="pg_write_server_files">
+      <ObjectId>4570</ObjectId>
+    </role>
+    <role id="15" parent="1" name="postgres">
       <BypassRls>1</BypassRls>
       <CanLogin>1</CanLogin>
       <CreateDb>1</CreateDb>
       <CreateRole>1</CreateRole>
       <ObjectId>10</ObjectId>
-      <Replication>1</Replication>
-      <SuperRole>1</SuperRole>
-    </role>
-    <role id="15" parent="1" name="olimjon">
-      <CanLogin>1</CanLogin>
-      <CreateDb>1</CreateDb>
-      <CreateRole>1</CreateRole>
-      <ObjectId>16386</ObjectId>
       <Replication>1</Replication>
       <SuperRole>1</SuperRole>
     </role>
@@ -6478,7 +6470,7 @@ sequence|table|16413|16414|1
     <schema id="262" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>779</IntrospectionStateNumber>
+      <IntrospectionStateNumber>787</IntrospectionStateNumber>
       <ObjectId>2200</ObjectId>
       <StateNumber>526</StateNumber>
       <OwnerName>postgres</OwnerName>
@@ -6491,8 +6483,8 @@ sequence|table|16413|16414|1
     </sequence>
     <sequence id="264" parent="262" name="users_id_seq">
       <DataType>integer|0s</DataType>
-      <ObjectId>16404</ObjectId>
-      <StateNumber>753</StateNumber>
+      <ObjectId>24605</ObjectId>
+      <StateNumber>786</StateNumber>
       <OwnerName>olimjon</OwnerName>
     </sequence>
     <table id="265" parent="262" name="books">
@@ -6502,8 +6494,8 @@ sequence|table|16413|16414|1
       <OwnerName>olimjon</OwnerName>
     </table>
     <table id="266" parent="262" name="users">
-      <ObjectId>16405</ObjectId>
-      <StateNumber>753</StateNumber>
+      <ObjectId>24606</ObjectId>
+      <StateNumber>786</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>olimjon</OwnerName>
     </table>
@@ -6555,55 +6547,55 @@ sequence|table|16413|16414|1
       <DefaultExpression>nextval(&apos;users_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>753</StateNumber>
+      <StateNumber>786</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="274" parent="266" name="name">
       <DataType>varchar(1000)|0s</DataType>
       <Position>2</Position>
-      <StateNumber>753</StateNumber>
+      <StateNumber>786</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="275" parent="266" name="surname">
       <DataType>varchar(1000)|0s</DataType>
       <Position>3</Position>
-      <StateNumber>753</StateNumber>
+      <StateNumber>786</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="276" parent="266" name="number">
       <DataType>varchar(300)|0s</DataType>
       <Position>4</Position>
-      <StateNumber>753</StateNumber>
+      <StateNumber>786</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="277" parent="266" name="email">
       <DataType>varchar(2000)|0s</DataType>
       <Position>5</Position>
-      <StateNumber>753</StateNumber>
+      <StateNumber>786</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="278" parent="266" name="password">
       <DataType>varchar(1000)|0s</DataType>
       <Position>6</Position>
-      <StateNumber>753</StateNumber>
+      <StateNumber>786</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <index id="279" parent="266" name="users_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16411</ObjectId>
+      <ObjectId>24612</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>753</StateNumber>
+      <StateNumber>786</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
     <key id="280" parent="266" name="users_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16412</ObjectId>
+      <ObjectId>24613</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>753</StateNumber>
-      <UnderlyingIndexId>16411</UnderlyingIndexId>
+      <StateNumber>786</StateNumber>
+      <UnderlyingIndexId>24612</UnderlyingIndexId>
     </key>
   </database-model>
 </dataSource>
