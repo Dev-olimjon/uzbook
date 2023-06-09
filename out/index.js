@@ -52,6 +52,6 @@ app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use('/', uzbook_routes_1.default);
 app.use(express_1.default.static(path.join(__dirname, "../public")));
-app.listen(process.env.PORT || 9090, () => {
+app.listen(5432, () => {
     console.log('server has been started on port 9090');
 });
